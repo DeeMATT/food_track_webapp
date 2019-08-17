@@ -24,8 +24,8 @@ def index():
 
     cur = db.execute('''SELECT log_date.entry_date, sum(food.protein) AS protein, sum(food.carbohydrates) AS carbohydrates, sum(food.fat) AS fat, sum(food.calories) AS calories 
                         FROM log_date 
-                        JOIN food_date ON food_date.log_date_id = log_date.id 
-                        JOIN food ON food.id = food_date.food_id 
+                        LEFT JOIN food_date ON food_date.log_date_id = log_date.id 
+                        LEFT JOIN food ON food.id = food_date.food_id 
                         GROUP BY log_date.id 
                         ORDER BY log_date.entry_date DESC''')
     
